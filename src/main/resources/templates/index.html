@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Cliente Socket</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f0f4f8;
+            color: #333;
+            margin: 0;
+            padding: 2rem;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            color: #34495e;
+            margin-top: 2rem;
+        }
+
+        pre {
+            background: #ecf0f1;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 5px solid #3498db;
+            font-size: 1rem;
+            white-space: pre-wrap;
+        }
+
+        form {
+            margin-top: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            max-width: 400px;
+            background: #ffffff;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        input[type="text"] {
+            padding: 0.6rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            transition: border 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            border-color: #2980b9;
+            outline: none;
+        }
+
+        button {
+            padding: 0.6rem;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #3498db;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+<h1>Cliente Socket - Interfaz Web</h1>
+
+<!-- Menú -->
+<h2>--- MENÚ ---</h2>
+<pre>
+1. Eco (escriba: ECO mensaje)
+2. Sumar (ej. 4+5)
+3. Obtener hora del servidor (escriba: GET TIME)
+4. Leer archivo (ej. FILE test.txt)
+5. Login (escriba: usuario:clave)
+0. Salir (escriba: 0)
+    </pre>
+
+<!-- Formulario -->
+<form th:action="@{/enviar}" method="post">
+    <label for="comando">Comando:</label>
+    <input type="text" id="comando" name="comando" th:value="${comando}" required />
+    <button type="submit">Enviar</button>
+</form>
+
+<!-- Respuesta del servidor -->
+<h2>Respuesta del Servidor:</h2>
+<pre th:text="${respuesta}">Aquí aparece la respuesta...</pre>
+</body>
+</html>
